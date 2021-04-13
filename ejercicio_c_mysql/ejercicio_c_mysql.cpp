@@ -72,7 +72,7 @@ void menu() {
         case 1: system("cls"); ingresar_marcas(); break;
         case 2: system("cls"); ingresar_productos(); break;
         case 3: system("cls"); modificar_marcas(); break;
-        //case 4: system("cls"); modificar_productos(); break;
+        case 4: system("cls"); modificar_productos(); break;
         case 5: system("cls"); eliminar_marcas(); break;
         case 6: system("cls"); eliminar_productos(); break;
         case 7: system("cls"); ver_marcas(); break;
@@ -322,13 +322,13 @@ void ingresar_productos() {
     }
 }
 
-/*
+
 void modificar_productos() {
     string producto, id_marca, descripcion, precio_costo, precio_venta, existencia, fecha,dato_antiguo;
 
-    ver();
+    ver2();
     cout << "\n\n\t\t.:Modificar Producto:. \n\n" << endl;
-    cout << "\nDigite el ID de la marca a modificar: ";
+    cout << "\nDigite el ID del producto a modificar: ";
     cin >> dato_antiguo;
 
     cout << "Ingrese Nombre del producto: ";
@@ -356,50 +356,30 @@ void modificar_productos() {
     fflush(stdin);
     fflush(stdin);
     fecha = "now()";
-    string insert = "update productos set producto ='" + producto + "' , id_marca= " + id_marca + ", descripcion= '" + descripcion + "',precio_costo = " + precio_costo +",precio_venta = " + precio_venta +",existencia =" + existencia + ",fecha_ingreso = " + fecha + "where id = "+dato_antiguo+"";
 
-    const char* insertar = insert.c_str();
+    string consulta = "UPDATE productos SET producto = '" + producto + "' , id_marca= '" + id_marca + "', descripcion= '" + descripcion + "', precio_costo = '" + precio_costo +"' , precio_venta = '" + precio_venta +"',existencia ='" + existencia + "' WHERE id_productos = '"+dato_antiguo+"'";
+
+    const char* insertar = consulta.c_str();
     q_estado = mysql_query(conectar, insertar);
 
     if (!q_estado) {
 
         system("color 02");
         cout << "\n\n\t\tDatos agregados con exito...\n\n" << endl;
+        cout << consulta<<"\n\n"<<endl;
         system("pause");
         menu();
     }
     else {
         system("color 0c");
         cout << "\n\n\t\tError al agregar los datos..\n\n" << endl;
-        cout << insert;
+        cout << consulta;
         cout << "\n\n\t\tIniciando conexion de nuevo..\n\n" << endl;
         system("pause");
         main();
     }
 
-   
-
-   
-    const char* insertar = insert.c_str();
-    q_estado = mysql_query(conectar, insertar);
-
-    if (!q_estado) {
-
-        system("color 02");
-        cout << "\n\n\t\tDatos agregados con exito...\n\n" << endl;
-        system("pause");
-        menu();
-    }
-    else {
-        system("color 0c");
-        cout << "\n\n\t\tError al agregar los datos..\n\n" << endl;
-        cout << insert;
-        cout << "\n\n\t\tIniciando conexion de nuevo..\n\n" << endl;
-        system("pause");
-        main();
-    }
-
-}*/
+}
 
 
 
